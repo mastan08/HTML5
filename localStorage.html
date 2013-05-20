@@ -2,18 +2,17 @@
 <html>
 <head>
 <title>Local Storage</title>
-<script>
-function store(){
-	
-
-localStorage.setItem('firstName','value');
-}
-</script>
 </head>
 <body>
-<form>
-Name : <input type="text" value="" name="firstname" id="firstName" />
-<input type="button" value="Store" onClick="store()" />
+<form name=editor>
+<label>Name: <input name=name></label>
+<input type="button" value="Store" onClick="setItem()" />
+<script>
+function setItem(){
+var name = document.forms.editor.name.value;
+localStorage.setItem(name);
+}
+</script>
 </form>
 </body>
 </html>
