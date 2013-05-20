@@ -6,9 +6,9 @@
 <body>
 <form name=editor>
 <label>Name: <input name=name></label>
-<input type="button" value="Store" onClick="setItem()" />
+<input type="button" value="Store" onClick="store()" />
 <script>
-function setItem(){
+function store(){
 var name = document.forms.editor.name.value;
 localStorage.setItem(name);
 }
