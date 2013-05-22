@@ -2,6 +2,24 @@
 <html>
 <head>
 <title>Local Storage</title>
+<script type="text/javascript">
+    var datefield=document.createElement("input")
+    datefield.setAttribute("type", "date")
+    if (datefield.type!="date"){ //if browser doesn't support input type="date", load files for jQuery UI Date Picker
+        document.write('<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />\n')
+        document.write('<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"><\/script>\n')
+        document.write('<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"><\/script>\n')
+    }
+</script>
+ 
+<script>
+if (datefield.type!="date"){ //if browser doesn't support input type="date", initialize date picker widget:
+    jQuery(function($){ //on document.ready
+        $('#birthday').datepicker();
+    })
+}
+</script>
+
 </head>
 <body>
 <form name=editor>
@@ -9,9 +27,10 @@
 <label>First Name: <input name=fname></label><br/>
 <label>Last Name: <input name=lname></label><br/>
 <label>E mail: <input type="email" name=email></label><br/>
-<label>DOB: <input type="date" name=date></label><br/>
+<label>DOB: <input type="date" id="birthday" name=birthday></label><br/>
 <label> Ph# Number <input type="tel" name=phno ></label><br />
 <input type="button" value="Store" onClick="dStore()" />
+<input type="button" value="Display" onClick="display()" />
 <input type="button" value="Clear" onClick="dClear()" />
 <script>
 function dStore(){
@@ -20,13 +39,14 @@ uNo.uName = document.forms.editor.uname.value;
 uNo.fName = document.forms.editor.fname.value;
 uNo.lName = document.forms.editor.lname.value;
 uNo.eMail = document.forms.editor.email.value;
-uNo.dOB = document.forms.editor.date.value;
+uNo.dOB = document.forms.editor.birthday.value;
 uNo.phNo = document.forms.editor.phno.value;
 
 localStorage.setItem('uNo',JSON.stringify(uNo));
 console.log(JSON.parse(localStorage.getItem('uNo')));
 
 //localStorage.removeItem('uNo');
+
 }
 
 function dClear(){
@@ -34,6 +54,8 @@ localStorage.clear();
 }
 </script>
 </form>
-
+<br /><br />
+<div id="displayData">
+</div>
 </body>
 </html>
