@@ -46,6 +46,12 @@ uNo.phNo = document.forms.editor.phno.value;
 localStorage.setItem('uNo',JSON.stringify(uNo));
 console.log(JSON.parse(localStorage.getItem('uNo')));
 
+if(uNo.uName=='' || uNo.fName=='' || uNo.lName=='' || uNo.eMail=='' || uNo.dOB=='' || uNo.phNo==''){
+	$("#displayData").html("Please enter all fields");
+	}
+else{
+$("#displayData").html("Your data is stored");
+}
 //localStorage.removeItem('uNo');
 
 }
@@ -76,12 +82,13 @@ function display(){
 										 "	<td>"+uNo.lName+"</td>" + 
 										 "	<td>"+uNo.eMail+"</td>" + 
 										  "	<td>"+uNo.dOB+"</td>" + 
-										   "	<td>"+uNo.phNo+"</td>" + 
+										   "<td>"+uNo.phNo+"</td>" + 
 		  								 "</tr>");
 }
 
 function dClear(){
 localStorage.clear();
+$("#displayData").html("Your stored data is cleared");
 }
 </script>
 </form>
