@@ -26,15 +26,15 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", ini
 <label>User Name: <input name=uname></label><br/>
 <label>First Name: <input name=fname></label><br/>
 <label>Last Name: <input name=lname></label><br/>
-<label>E mail: <input type="email" name=email></label><br/>
+<label>Email: <input type="email" name=email required></label><br/>
 <label>DOB: <input type="date" id="birthday" name=birthday></label><br/>
-<label> Ph# Number <input type="tel" name=phno ></label><br />
+<label>Ph# Number <input type="tel" name=phno ></label><br />
 <input type="button" value="Store" onClick="dStore()" />
 <input type="button" value="Display" onClick="display()" />
 <input type="button" value="Clear" onClick="dClear()" />
 <script>
-function dStore(){
 var uNo={};
+function dStore(){
 uNo.uName = document.forms.editor.uname.value;
 uNo.fName = document.forms.editor.fname.value;
 uNo.lName = document.forms.editor.lname.value;
@@ -46,6 +46,38 @@ localStorage.setItem('uNo',JSON.stringify(uNo));
 console.log(JSON.parse(localStorage.getItem('uNo')));
 
 //localStorage.removeItem('uNo');
+
+}
+
+function display(){
+
+		$("#displayData").html("");
+		$("#displayData").html(
+			"<thead>"+
+			"	<tr>"+
+			
+			"	<th>User Name</th>"+
+			"	<th>First Name</th>"+
+			"	<th>Last Name</th>"+
+			"	<th>Email</th>"+
+			"	<th>DOB</th>"+
+			"	<th>Ph# Number</th>"+
+			"	</tr>"+
+			"</thead>"+
+			"<tbody>"+
+			"</tbody>"
+			);
+		
+		  	$("#displayData tbody").append("<tr>"+
+									 	
+										 "	<td>"+uNo.uName+"</td>" + 
+										 "	<td>"+uNo.fName+"</td>" + 
+										 "	<td>"+uNo.lName+"</td>" + 
+										 "	<td>"+uNo.eMail+"</td>" + 
+										  "	<td>"+uNo.dOB+"</td>" + 
+										   "	<td>"+uNo.phNo+"</td>" + 
+		  								 "</tr>");
+		//}
 
 }
 
